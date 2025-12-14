@@ -48,6 +48,8 @@ builder.Services.AddAuthorization(); // 👈 THIS LINE
 
 var app = builder.Build();
 
+app.UseDeveloperExceptionPage();
+
 app.UseAuthentication();
 app.UseAuthorization();
 
