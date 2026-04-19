@@ -1,5 +1,7 @@
 Order Management API
 
+![Dashboard](Swagger.png)
+
 This project is a small Order Management API built in C# using ASP.NET Core and Entity Framework Core to practice and demonstrate real backend concepts beyond basic CRUD. 
 It supports user registration and login using JWT authentication, enforces per-user access to data, and models a simple order lifecycle where orders can be created, modified while in a draft state, and then submitted, after which they become immutable. 
 Orders are associated with users and contain multiple order items, with business rules enforced at the API level such as preventing item additions to submitted orders and requiring at least one item before submission. 

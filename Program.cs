@@ -14,7 +14,9 @@ using OrderManagementApi.Dtos;
 var builder = WebApplication.CreateBuilder(args);
 var jwtKey = "SUPER_SECRET_DEV_KEY_CHANGE_LATER_123456789";
 
-
+builder.Services.AddControllers();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 
 // Add services to the container.
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
@@ -50,6 +52,15 @@ var app = builder.Build();
 
 app.UseDeveloperExceptionPage();
 
+
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
+
+app.UseDeveloperExceptionPage();
+
 app.UseAuthentication();
 app.UseAuthorization();
 
@@ -58,11 +69,11 @@ app.UseAuthorization();
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
-}
-
+}       
+else
 //app.UseHttpsRedirection();
 
-app.MapGet("/", () => "Order Management API is running");
+app.MapGet("/", () => Results.Redirect("/swagger"));
 
 app.MapPost("/auth/register", async (
     RegisterRequest request,
